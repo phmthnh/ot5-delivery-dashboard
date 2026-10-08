@@ -1,0 +1,209 @@
+{
+  "exercise": "5",
+  "culture": "vi-VN",
+  "results": [
+    {
+      "name": "sample_total",
+      "pass": true,
+      "actual": null
+    },
+    {
+      "name": "sample_weight_10_5",
+      "pass": true,
+      "actual": null
+    },
+    {
+      "name": "tabs",
+      "pass": true,
+      "actual": null
+    },
+    {
+      "name": "edited_total",
+      "pass": true,
+      "actual": null
+    },
+    {
+      "name": "edited_weight_15",
+      "pass": true,
+      "actual": null
+    },
+    {
+      "name": "error_next_to_editor",
+      "pass": true,
+      "actual": null
+    },
+    {
+      "name": "zero_qty_error",
+      "pass": true,
+      "actual": null
+    },
+    {
+      "name": "invalid_other_row_retained",
+      "pass": true,
+      "actual": null
+    },
+    {
+      "name": "nonnumeric_qty",
+      "pass": true,
+      "actual": null
+    },
+    {
+      "name": "negative_weight",
+      "pass": true,
+      "actual": null
+    },
+    {
+      "name": "nonnumeric_weight",
+      "pass": true,
+      "actual": null
+    },
+    {
+      "name": "all_errors_clear",
+      "pass": true,
+      "actual": null
+    },
+    {
+      "name": "overflow_handled",
+      "pass": true,
+      "actual": null
+    },
+    {
+      "name": "clock_ticks",
+      "pass": true,
+      "actual": null
+    },
+    {
+      "name": "F2",
+      "pass": true,
+      "actual": null
+    },
+    {
+      "name": "delete",
+      "pass": true,
+      "actual": null
+    },
+    {
+      "name": "customer_delete_keeps_rows",
+      "pass": true,
+      "actual": null
+    },
+    {
+      "name": "minimum_layout",
+      "pass": true,
+      "actual": null
+    },
+    {
+      "name": "maximize_grid",
+      "pass": true,
+      "actual": null
+    },
+    {
+      "name": "timer_disposed",
+      "pass": true,
+      "actual": null
+    }
+  ],
+  "date": "2026-10-08",
+  "en-US": [
+    {
+      "name": "sample_total",
+      "pass": true,
+      "actual": null
+    },
+    {
+      "name": "sample_weight_10_5",
+      "pass": true,
+      "actual": null
+    },
+    {
+      "name": "tabs",
+      "pass": true,
+      "actual": null
+    },
+    {
+      "name": "edited_total",
+      "pass": true,
+      "actual": null
+    },
+    {
+      "name": "edited_weight_15",
+      "pass": true,
+      "actual": null
+    },
+    {
+      "name": "error_next_to_editor",
+      "pass": true,
+      "actual": null
+    },
+    {
+      "name": "zero_qty_error",
+      "pass": true,
+      "actual": null
+    },
+    {
+      "name": "invalid_other_row_retained",
+      "pass": true,
+      "actual": null
+    },
+    {
+      "name": "nonnumeric_qty",
+      "pass": true,
+      "actual": null
+    },
+    {
+      "name": "negative_weight",
+      "pass": true,
+      "actual": null
+    },
+    {
+      "name": "nonnumeric_weight",
+      "pass": true,
+      "actual": null
+    },
+    {
+      "name": "all_errors_clear",
+      "pass": true,
+      "actual": null
+    },
+    {
+      "name": "overflow_handled",
+      "pass": true,
+      "actual": null
+    },
+    {
+      "name": "clock_ticks",
+      "pass": true,
+      "actual": null
+    },
+    {
+      "name": "F2",
+      "pass": true,
+      "actual": null
+    },
+    {
+      "name": "delete",
+      "pass": true,
+      "actual": null
+    },
+    {
+      "name": "customer_delete_keeps_rows",
+      "pass": true,
+      "actual": null
+    },
+    {
+      "name": "minimum_layout",
+      "pass": true,
+      "actual": null
+    },
+    {
+      "name": "maximize_grid",
+      "pass": true,
+      "actual": null
+    },
+    {
+      "name": "timer_disposed",
+      "pass": true,
+      "actual": null
+    }
+  ]
+}

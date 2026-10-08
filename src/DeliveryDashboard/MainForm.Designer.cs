@@ -13,6 +13,19 @@ namespace DeliveryDashboard
 
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            this._clockTimer = new System.Windows.Forms.Timer(this.components);
+            this._errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.tabDetails = new System.Windows.Forms.TabControl();
+            this.tabItems = new System.Windows.Forms.TabPage();
+            this.tabGuide = new System.Windows.Forms.TabPage();
+            this.lblGuide = new System.Windows.Forms.Label();
+            this.lblValidation = new System.Windows.Forms.Label();
+            this.colItem = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colQty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colWeight = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.splitMain       = new System.Windows.Forms.SplitContainer();
             this.grpCustomer     = new System.Windows.Forms.GroupBox();
             this.lblSender       = new System.Windows.Forms.Label();
@@ -40,6 +53,10 @@ namespace DeliveryDashboard
             this.splitMain.SuspendLayout();
             this.grpCustomer.SuspendLayout();
             this.grpItems.SuspendLayout();
+            this.tabDetails.SuspendLayout();
+            this.tabItems.SuspendLayout();
+            this.tabGuide.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this._errorProvider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvItems)).BeginInit();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -48,6 +65,10 @@ namespace DeliveryDashboard
             this.splitMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitMain.Location = new System.Drawing.Point(0, 0);
             this.splitMain.Name = "splitMain";
+            this.splitMain.Size = new System.Drawing.Size(1100, 578);
+            this.splitMain.Panel1MinSize = 300;
+            this.splitMain.Panel2MinSize = 450;
+            this.splitMain.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
             this.splitMain.SplitterDistance = 310;
             this.splitMain.TabIndex = 0;
 
@@ -55,7 +76,28 @@ namespace DeliveryDashboard
             this.splitMain.Panel1.Controls.Add(this.grpCustomer);
 
             // Panel2 (phải) — bảng hàng hóa
-            this.splitMain.Panel2.Controls.Add(this.grpItems);
+            this.splitMain.Panel2.Controls.Add(this.tabDetails);
+
+            // TabControl tổ chức bảng hàng và hướng dẫn thao tác.
+            this.tabDetails.Controls.Add(this.tabItems);
+            this.tabDetails.Controls.Add(this.tabGuide);
+            this.tabDetails.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabDetails.Name = "tabDetails";
+            this.tabDetails.Size = new System.Drawing.Size(786, 578);
+            this.tabDetails.TabIndex = 0;
+            this.tabItems.Controls.Add(this.grpItems);
+            this.tabItems.Name = "tabItems";
+            this.tabItems.Text = "Hàng hóa";
+            this.tabItems.Padding = new System.Windows.Forms.Padding(3);
+            this.tabItems.UseVisualStyleBackColor = true;
+            this.tabGuide.Controls.Add(this.lblGuide);
+            this.tabGuide.Name = "tabGuide";
+            this.tabGuide.Text = "Hướng dẫn";
+            this.tabGuide.Padding = new System.Windows.Forms.Padding(16);
+            this.tabGuide.UseVisualStyleBackColor = true;
+            this.lblGuide.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblGuide.Name = "lblGuide";
+            this.lblGuide.Text = "Nhập hoặc sửa trực tiếp trên bảng hàng hóa.\n\nF2: thêm dòng mới.\nDelete: xóa dòng đang chọn khi bảng không ở chế độ sửa ô.\n\nSố lượng là số nguyên > 0.\nTrọng lượng mỗi món > 0 (kg).\nĐơn giá >= 0 (VNĐ).\n\nThành tiền = Số lượng × Đơn giá.\nTổng trọng lượng = tổng (Số lượng × Trọng lượng mỗi món).\nDòng có lỗi chưa được cộng vào tổng.\n\nDữ liệu chỉ lưu trong RAM của lần chạy hiện tại.";
 
             // grpCustomer
             this.grpCustomer.Controls.Add(this.lblSender);
@@ -68,6 +110,7 @@ namespace DeliveryDashboard
             this.grpCustomer.Controls.Add(this.cboShipType);
             this.grpCustomer.Controls.Add(this.lblHotkey);
             this.grpCustomer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grpCustomer.Size = new System.Drawing.Size(310, 578);
             this.grpCustomer.Name = "grpCustomer";
             this.grpCustomer.TabIndex = 0;
             this.grpCustomer.TabStop = false;
@@ -145,7 +188,9 @@ namespace DeliveryDashboard
 
             // grpItems
             this.grpItems.Controls.Add(this.dgvItems);
+            this.grpItems.Controls.Add(this.lblValidation);
             this.grpItems.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grpItems.Padding = new System.Windows.Forms.Padding(3, 3, 26, 3);
             this.grpItems.Name = "grpItems";
             this.grpItems.TabIndex = 0;
             this.grpItems.TabStop = false;
@@ -157,9 +202,47 @@ namespace DeliveryDashboard
             this.dgvItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvItems.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvItems.Name = "dgvItems";
+            this.dgvItems.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvItems.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvItems.MultiSelect = false;
+            this.dgvItems.ShowCellErrors = true;
+            this.dgvItems.ShowRowErrors = true;
+            this.dgvItems.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+                this.colItem, this.colQty, this.colWeight, this.colPrice, this.colTotal });
             this.dgvItems.TabIndex = 0;
             this.dgvItems.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvItems_CellValueChanged);
             this.dgvItems.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvItems_CellEndEdit);
+            this.dgvItems.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgvItems_RowsAdded);
+            this.dgvItems.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.dgvItems_RowsRemoved);
+            this.dgvItems.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgvItems_EditingControlShowing);
+            this.dgvItems.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgvItems_DataError);
+
+            this.colItem.Name = "colItem";
+            this.colItem.HeaderText = "Tên hàng";
+            this.colItem.FillWeight = 140F;
+            this.colQty.Name = "colQty";
+            this.colQty.HeaderText = "Số lượng";
+            this.colQty.FillWeight = 65F;
+            this.colWeight.Name = "colWeight";
+            this.colWeight.HeaderText = "Kg / món";
+            this.colWeight.FillWeight = 80F;
+            this.colPrice.Name = "colPrice";
+            this.colPrice.HeaderText = "Đơn giá (VNĐ)";
+            this.colPrice.DefaultCellStyle.Format = "N0";
+            this.colTotal.Name = "colTotal";
+            this.colTotal.HeaderText = "Thành tiền (VNĐ)";
+            this.colTotal.DefaultCellStyle.Format = "N0";
+            this.colTotal.ReadOnly = true;
+            this.lblValidation.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.lblValidation.Name = "lblValidation";
+            this.lblValidation.Height = 36;
+            this.lblValidation.Text = "Dữ liệu hợp lệ.";
+            this.lblValidation.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+
+            this._errorProvider.ContainerControl = this;
+            this._errorProvider.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
+            this._clockTimer.Interval = 1000;
+            this._clockTimer.Tick += new System.EventHandler(this.clockTimer_Tick);
 
             // statusStrip
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -199,13 +282,14 @@ namespace DeliveryDashboard
             // MainForm
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1000, 550);
+            this.ClientSize = new System.Drawing.Size(1100, 600);
             this.Controls.Add(this.splitMain);
             this.Controls.Add(this.statusStrip);
-            this.MinimumSize = new System.Drawing.Size(800, 450);
+            this.MinimumSize = new System.Drawing.Size(900, 500);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "BT5 - Bảng điều khiển Quản lý Đơn giao hàng";
+            this.Load += new System.EventHandler(this.MainForm_Load);
 
             ((System.ComponentModel.ISupportInitialize)(this.splitMain)).EndInit();
             this.splitMain.Panel1.ResumeLayout(false);
@@ -214,6 +298,10 @@ namespace DeliveryDashboard
             this.grpCustomer.ResumeLayout(false);
             this.grpCustomer.PerformLayout();
             this.grpItems.ResumeLayout(false);
+            this.tabDetails.ResumeLayout(false);
+            this.tabItems.ResumeLayout(false);
+            this.tabGuide.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this._errorProvider)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvItems)).EndInit();
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
@@ -222,6 +310,18 @@ namespace DeliveryDashboard
         }
 
         private System.Windows.Forms.SplitContainer splitMain;
+        private System.Windows.Forms.Timer _clockTimer;
+        private System.Windows.Forms.ErrorProvider _errorProvider;
+        private System.Windows.Forms.TabControl tabDetails;
+        private System.Windows.Forms.TabPage tabItems;
+        private System.Windows.Forms.TabPage tabGuide;
+        private System.Windows.Forms.Label lblGuide;
+        private System.Windows.Forms.Label lblValidation;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colItem;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colQty;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colWeight;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colPrice;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colTotal;
         private System.Windows.Forms.GroupBox grpCustomer;
         private System.Windows.Forms.Label lblSender;
         private System.Windows.Forms.TextBox txtSender;
