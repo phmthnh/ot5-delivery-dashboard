@@ -4,9 +4,37 @@
 
 - **Họ và tên:** Phạm Tuấn Thành
 - **Mã số sinh viên:** 24810320264
-- **Lớp:** [Chờ xác nhận lớp]
+- **Lớp:** D19QTANM1
 - **Tên môn học:** Lập trình C# / Windows Forms
 - **Tên bài tập:** Bài 5 — Bảng điều khiển Quản lý Đơn giao hàng
+
+---
+
+## KẾT QUẢ THỰC HÀNH
+
+Ảnh chụp từ ứng dụng chạy thực tế trên Windows trong lần kiểm thử ngày **08/10/2026**.
+
+### 1. Ảnh màn hình Giao diện chính
+
+![Giao diện chính](./screenshots/main_ui.png)
+
+Dashboard có thông tin khách hàng, các tab hàng hóa/hướng dẫn và thanh tổng hợp; dữ liệu mẫu gồm 7 món, 10,50 kg, 37.750.000 VNĐ.
+
+### 2. Ảnh màn hình Chức năng thực thi / Kết quả
+
+![Thực thi chức năng](./screenshots/execution_result.png)
+
+Đổi số lượng Laptop từ 2 thành 3: tổng tăng thành 8 món, 15,00 kg và 55.750.000 VNĐ. Trọng lượng được tính bằng kg/món × số lượng.
+
+### 3. Ảnh màn hình Kiểm tra lỗi (Validation)
+
+![Kiểm tra lỗi](./screenshots/validation_error.png)
+
+Nhập số lượng Laptop bằng 0: ô và dòng hiển thị lỗi, ErrorProvider xuất hiện; tổng chỉ tính dòng Chuột hợp lệ (5 món, 1,50 kg, 1.750.000 VNĐ).
+
+Ảnh được chụp khi kiểm thử với thiết lập vùng en-US, nên dấu phân cách số trong ảnh theo thiết lập đó. Giá trị tiền và trọng lượng không thay đổi.
+
+---
 
 ## MÔ TẢ BÀI TẬP
 
@@ -71,22 +99,6 @@ Xem [bảng kiểm thử](./docs/TESTING.md) và [kết quả chạy](./docs/tes
 
 Theo xác nhận của người dùng: cột kg/món là trọng lượng mỗi món; tổng trọng lượng = tổng (số lượng × kg/món). Dòng sai được loại khỏi cả ba tổng và có cảnh báo rõ. Đơn giá cho phép 0; hàng mẫu có giá dương. Dữ liệu lưu trong RAM.
 
-## KẾT QUẢ THỰC HÀNH
-
-### 1. Giao diện chính
-
-![Giao diện chính](./screenshots/main_ui.png)
-
-### 2. Chức năng thực thi / Kết quả
-
-![Thực thi chức năng](./screenshots/execution_result.png)
-
-### 3. Kiểm tra lỗi / Validation
-
-![Kiểm tra lỗi](./screenshots/validation_error.png)
-
-Thư mục `screenshots/` dùng để lưu ảnh chạy thực tế. Giữ đúng tên ảnh trên để README hiển thị trực tiếp trên GitHub.
-
 ## QUY TRÌNH NỘP VÀ PUSH
 
 Repo đã được khởi tạo trên nhánh `main` và liên kết `origin`. Sau khi thay đổi code, README hoặc screenshot, chạy:
@@ -105,9 +117,9 @@ git push -u origin main
 ## CHECKLIST TRƯỚC KHI NỘP
 
 - [x] README có họ tên và MSSV.
-- [ ] README đã điền lớp thật.
-- [ ] `screenshots/` có đủ 3 ảnh chạy thực tế.
-- [ ] Ảnh hiển thị trực tiếp trên trang chính GitHub.
+- [x] README đã điền lớp D19QTANM1.
+- [x] `screenshots/` có đủ 3 ảnh chạy thực tế.
+- [x] Ảnh hiển thị trực tiếp trên trang chính GitHub.
 - [x] `.gitignore` loại tệp build và cấu hình cá nhân của Visual Studio.
 - [x] Repository Public.
-- [x] Mã nguồn bản sửa và tài liệu đã commit/push lên nhánh `main`.
+- [x] Mã nguồn, README và ảnh đã commit/push lên nhánh `main`.
